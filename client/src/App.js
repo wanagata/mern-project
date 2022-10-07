@@ -9,14 +9,14 @@ import Auth from './components/Auth/Auth';
 
 
 const App = () => {
-
+  
   return (
     <BrowserRouter>
       <Container maxidth="lg">
         <Navbar />
         <Routes>
-          <Route path="/" exact component={Home} />
-          <Route path="/auth" exact component={Auth} />
+          <Route path="/" exact element={<Home />} />
+          <Route path="/auth" exact element={<Auth />} />
         </Routes>
         
       </Container>
