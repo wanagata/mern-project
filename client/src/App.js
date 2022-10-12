@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from '@material-ui/core';
-
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Home from './components/Home/Home'
@@ -11,6 +11,7 @@ import Auth from './components/Auth/Auth';
 const App = () => {
   
   return (
+    <GoogleOAuthProvider clientId="695554315197-d5uff0hah3bhro90h9fl10njmaumldfi.apps.googleusercontent.com">...
     <BrowserRouter>
       <Container maxidth="lg">
         <Navbar />
@@ -21,7 +22,7 @@ const App = () => {
         
       </Container>
     </BrowserRouter>
-
+    </GoogleOAuthProvider>
   )
 }
 export default App;

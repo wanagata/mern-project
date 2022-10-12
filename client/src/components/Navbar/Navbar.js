@@ -1,12 +1,32 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState ,useEffect} from 'react'
+import { Link,useNavigate, useLocation } from 'react-router-dom'
 import { AppBar, Avatar, Button, Typography, Toolbar } from '@material-ui/core'
 import memories from '../../images/memories.png'
 import useStyles from './styles.js';
-
+import { useDispatch } from 'react-redux';
 const Navbar = () => {
     const classes = useStyles();
-    const user = null;
+    const [ user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
+    
+    const logout = () => {
+        dispatch({ type: 'LOGOUT'});
+        
+        navigate('/');
+        setUser(null);
+    }
+
+    useEffect(() =>{
+        const token = user?.token;
+        setUser(JSON.parse(localStorage.getItem('profile')));
+        //console.log('in nav effect')
+        //console.log(user);
+    },[location]);
+
+    //console.log('In Navbar');
+    //console.log(user);
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
 
@@ -18,9 +38,10 @@ const Navbar = () => {
             <Toolbar className={classes.toolbar}>
                 {user ? (
                     <div className={classes.profile}>
-                        <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar>
-                        <Typography className={classes.userName} varient="h6">{user.result.name}</Typography>
-                        <Button varient="contained" className={classes.logout} color="secondary">Log Out</Button>
+                        <Avatar className={classes.purple} alt={user.name} src={user.imageUrl}>{user.name.charAt(0)}</Avatar>
+                        <Typography className={classes.userName} varient="h6">{user.name}</Typography>
+                        <Button varient="contained"  color="secondary" onClick={logout}>Log Out</Button>
+                        
                     </div>
                 ) :
                     (

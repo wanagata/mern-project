@@ -8,7 +8,7 @@ const Posts = ({ post, setCurrentId }) => {
   const posts = useSelector((state) => state.posts)
   const classes = useStyles();
 
-  console.log(posts)
+  //console.log(posts)
   return (
     //if posts.length == 0 then show loading
     !posts.length ? <CircularProgress /> : (
