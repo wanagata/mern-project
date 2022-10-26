@@ -40,18 +40,20 @@ const Auth = () => {
     setShowPassword(false);
   }
   const googleSuccess = async (res) => {
-    console.log(res);
+    //console.log(res);
     //googleSuccess(tokenResponse) 
     const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo',
       { headers: { Authorization: `Bearer ${res.access_token}` } },
     );
-    console.log(userInfo);
+    //console.log('userInfo');
+    
     
     const result = userInfo?.data;
     const token = res?.access_token;
-
+    const data = { result, token } ;
+    console.log(data);
     try {
-      dispatch({ type: 'AUTH', data: { result, token } })
+      dispatch({ type: 'AUTH', data: data })
       navigate('/');
     } catch (error) {
       console.log(error);

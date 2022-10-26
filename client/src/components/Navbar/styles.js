@@ -40,4 +40,23 @@ export default makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
+  //make mobile responsive
+  [theme.breakpoints.down('md')]: {
+    appBar: {
+      borderRadius: 15,
+      margin: '30px 0',
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: '10px 50px',
+    },
+    heading: {
+      fontSize: '30px',
+    },
+    image: {
+      visibility: 'hidden',
+      width: '0%',
+  },
+}
 }));
